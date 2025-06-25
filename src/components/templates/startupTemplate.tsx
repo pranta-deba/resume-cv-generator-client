@@ -28,7 +28,7 @@ export default function StartupTemplate({ data }: TemplateProps) {
           </div>
 
           <div className="text-center space-y-3">
-            <div className="flex flex-wrap justify-center gap-4 text-purple-100">
+            <div className="flex flex-wrap justify-center gap-4 text-black">
               {data.personalInfo.email && (
                 <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
                   {data.personalInfo.email}
@@ -47,7 +47,7 @@ export default function StartupTemplate({ data }: TemplateProps) {
             </div>
 
             {(data.personalInfo.website || data.personalInfo.linkedin) && (
-              <div className="flex flex-wrap justify-center gap-4 text-pink-100">
+              <div className="flex flex-wrap justify-center gap-4 text-black">
                 {data.personalInfo.website && (
                   <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
                     {data.personalInfo.website}
