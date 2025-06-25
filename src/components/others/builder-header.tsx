@@ -1,9 +1,6 @@
 import { Download, Eye, FileText, Save } from "lucide-react";
 import { Button } from "../ui/button";
-
-interface BuilderHeaderProps {
-  handleSave: () => void;
-}
+import type { BuilderHeaderProps } from "@/types";
 
 const BuilderHeader = ({ handleSave }: BuilderHeaderProps) => {
   return (

@@ -39,3 +39,10 @@ export interface ResumeData {
     link: string;
   }>;
 }
+export interface TemplateProps {
+  data: ResumeData
+}
+
+export interface BuilderHeaderProps {
+  handleSave: () => void;
+}
