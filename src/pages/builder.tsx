@@ -11,50 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import type { ResumeData } from "@/types";
 import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-interface ResumeData {
-  personalInfo: {
-    fullName: string;
-    email: string;
-    phone: string;
-    location: string;
-    website: string;
-    linkedin: string;
-    summary: string;
-  };
-  experience: Array<{
-    id: string;
-    company: string;
-    position: string;
-    startDate: string;
-    endDate: string;
-    current: boolean;
-    description: string;
-  }>;
-  education: Array<{
-    id: string;
-    institution: string;
-    degree: string;
-    field: string;
-    startDate: string;
-    endDate: string;
-    gpa: string;
-  }>;
-  skills: Array<{
-    id: string;
-    category: string;
-    items: string[];
-  }>;
-  projects: Array<{
-    id: string;
-    name: string;
-    description: string;
-    technologies: string;
-    link: string;
-  }>;
-}
+
 
 const Builder = () => {
   const [searchParams] = useSearchParams();
@@ -87,7 +48,7 @@ const Builder = () => {
 
   console.log("Template ID:", templateId);
   console.log("Resume ID:", resumeId);
-  
+
 
   const handlePersonalInfoChange = (field: string, value: string) => {
     setResumeData((prev) => ({
