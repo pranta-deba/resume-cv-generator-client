@@ -87,6 +87,7 @@ const Builder = () => {
 
   console.log("Template ID:", templateId);
   console.log("Resume ID:", resumeId);
+  
 
   const handlePersonalInfoChange = (field: string, value: string) => {
     setResumeData((prev) => ({
