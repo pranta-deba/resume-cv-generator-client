@@ -4,15 +4,15 @@ import MinimalTemplate from "@/components/templetes/minimalTemplate";
 import ModernTemplate from "@/components/templetes/modernTemplate";
 import { Button } from "@/components/ui/button";
 import type { ResumeData } from "@/types";
-import { ArrowLeft, FileText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Preview = () => {
   const [searchParams] = useSearchParams();
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
-
+  const resumeRef = useRef<HTMLDivElement>(null);
   const [resumeData, setResumeData] = useState<ResumeData | null>(null);
   const [template, setTemplate] = useState("modern");
   const [loading, setLoading] = useState(true);
@@ -77,7 +77,46 @@ const Preview = () => {
     );
   }
 
-  return <div className="min-h-screen bg-gray-100"></div>;
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center">
+              <FileText className="h-8 w-8 text-blue-600" />
+              <span className="ml-2 text-2xl font-bold text-gray-900">
+                Resume Preview
+              </span>
+            </div>
+            <div className="flex space-x-4">
+              <Button variant="outline" onClick={() => navigate("/dashboard")}>
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+              <Button variant="outline" onClick={() => navigate("/builder")}>
+                <Edit className="h-4 w-4 mr-2" />
+                Edit Resume
+              </Button>
+              <Button>
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Preview Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div ref={resumeRef} className="resume-content">
+            {renderTemplate()}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Preview;
