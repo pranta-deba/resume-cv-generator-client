@@ -16,13 +16,15 @@ import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-
 const Builder = () => {
   const [searchParams] = useSearchParams();
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
   const [activeTab, setActiveTab] = useState("personal");
   const [selectedTemplate, setSelectedTemplate] = useState("modern");
+
+  console.log("Template ID:", templateId);
+  console.log("Resume ID:", resumeId);
 
   const [resumeData, setResumeData] = useState<ResumeData>({
     personalInfo: {
@@ -45,10 +47,6 @@ const Builder = () => {
       setSelectedTemplate(templateId);
     }
   }, [templateId]);
-
-  console.log("Template ID:", templateId);
-  console.log("Resume ID:", resumeId);
-
 
   const handlePersonalInfoChange = (field: string, value: string) => {
     setResumeData((prev) => ({
