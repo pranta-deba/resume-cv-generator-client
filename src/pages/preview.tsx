@@ -3,18 +3,19 @@ import CreativeTemplate from "@/components/templates/creativeTemplate";
 import MinimalTemplate from "@/components/templates/minimalTemplate";
 import ModernTemplate from "@/components/templates/modernTemplate";
 import { Button } from "@/components/ui/button";
-import { dummyData } from "@/constants";
 import type { ResumeData } from "@/types";
 import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+
+import { useReactToPrint } from "react-to-print";
 
 const Preview = () => {
   const [searchParams] = useSearchParams();
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
   const resumeRef = useRef<HTMLDivElement>(null);
-  const [resumeData, setResumeData] = useState<ResumeData | null>(dummyData);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
   const [template, setTemplate] = useState("modern");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -29,6 +30,11 @@ const Preview = () => {
 
     setLoading(false);
   }, [templateId]);
+
+  const handleDownloadPDF = useReactToPrint({
+    contentRef: resumeRef,
+    documentTitle: `${resumeData?.personalInfo.fullName || "Resume"}.pdf`,
+  });
 
   const renderTemplate = () => {
     if (!resumeData) return null;
@@ -99,7 +105,7 @@ const Preview = () => {
                 <Edit className="h-4 w-4 mr-2" />
                 Edit Resume
               </Button>
-              <Button>
+              <Button onClick={handleDownloadPDF}>
                 <Download className="h-4 w-4 mr-2" />
                 Download PDF
               </Button>
