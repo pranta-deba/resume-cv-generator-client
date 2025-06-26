@@ -3,6 +3,7 @@ import CreativeTemplate from "@/components/templates/creativeTemplate";
 import MinimalTemplate from "@/components/templates/minimalTemplate";
 import ModernTemplate from "@/components/templates/modernTemplate";
 import { Button } from "@/components/ui/button";
+import { dummyData } from "@/constants";
 import type { ResumeData } from "@/types";
 import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -13,7 +14,7 @@ const Preview = () => {
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
   const resumeRef = useRef<HTMLDivElement>(null);
-  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(dummyData);
   const [template, setTemplate] = useState("modern");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
