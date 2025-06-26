@@ -9,9 +9,9 @@ const Header = () => {
         <div className="flex justify-between items-center py-6">
           <div className="flex items-center">
             <FileText className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-2xl font-bold text-gray-900">
+            <Link to="/" className="ml-2 text-2xl font-bold text-gray-900">
               ResumeBuilder
-            </span>
+            </Link>
           </div>
           <div className="flex space-x-4">
             <Link to="/login">
