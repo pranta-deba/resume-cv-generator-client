@@ -1,7 +1,7 @@
-import ClassicTemplate from "@/components/templetes/classicTemplate";
-import CreativeTemplate from "@/components/templetes/creativetemplate";
-import MinimalTemplate from "@/components/templetes/minimalTemplate";
-import ModernTemplate from "@/components/templetes/modernTemplate";
+import ClassicTemplate from "@/components/templates/classicTemplate";
+import CreativeTemplate from "@/components/templates/creativeTemplate";
+import MinimalTemplate from "@/components/templates/minimalTemplate";
+import ModernTemplate from "@/components/templates/modernTemplate";
 import { Button } from "@/components/ui/button";
 import type { ResumeData } from "@/types";
 import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
