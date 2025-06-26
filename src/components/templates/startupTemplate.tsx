@@ -94,7 +94,7 @@ export default function StartupTemplate({ data }: TemplateProps) {
             <div className="relative">
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-orange-500"></div>
               <div className="space-y-8">
-                {data.experience.map((exp, index) => (
+                {data.experience.map((exp) => (
                   <div key={exp.id} className="relative">
                     <div className="absolute left-4 w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full border-4 border-white shadow-lg"></div>
                     <div className="ml-16 bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
