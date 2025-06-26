@@ -1,8 +1,10 @@
 import ClassicTemplate from "@/components/templates/classicTemplate";
 import CreativeTemplate from "@/components/templates/creativeTemplate";
+import ExecutiveTemplate from "@/components/templates/executiveTemplate";
 import MinimalTemplate from "@/components/templates/minimalTemplate";
 import ModernTemplate from "@/components/templates/modernTemplate";
 import { Button } from "@/components/ui/button";
+import { dummyData } from "@/constants";
 import type { ResumeData } from "@/types";
 import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +17,7 @@ const Preview = () => {
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
   const resumeRef = useRef<HTMLDivElement>(null);
-  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(dummyData);
   const [template, setTemplate] = useState("modern");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -48,6 +50,8 @@ const Preview = () => {
         return <CreativeTemplate data={resumeData} />;
       case "minimal":
         return <MinimalTemplate data={resumeData} />;
+      case "executive":
+        return <ExecutiveTemplate data={resumeData} />;
       default:
         return <ModernTemplate data={resumeData} />;
     }
