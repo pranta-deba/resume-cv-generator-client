@@ -1,8 +1,20 @@
-import { FileText } from "lucide-react";
+import { FileText, LogOutIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./button";
+import { useAppSelector } from "@/redux/hooks";
+import { clearUser, selectUser } from "@/redux/features/user.slice";
+import { useDispatch } from "react-redux";
+import { logout } from "@/firebase/authService";
 
 const Header = () => {
+  const user = useAppSelector(selectUser);
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    await logout();
+    dispatch(clearUser());
+  };
+
   return (
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,6 +32,11 @@ const Header = () => {
             <Link to="/register">
               <Button>Get Started</Button>
             </Link>
+            {user && (
+              <Button onClick={handleLogout}>
+                <LogOutIcon />
+              </Button>
+            )}
           </div>
         </div>
       </div>
