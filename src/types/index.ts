@@ -40,9 +40,24 @@ export interface ResumeData {
   }>;
 }
 export interface TemplateProps {
-  data: ResumeData
+  data: ResumeData;
 }
 
 export interface BuilderHeaderProps {
   handleSave: () => void;
+}
+
+export interface User {
+  _id?: string;
+  id?: string;
+  name: string;
+  email: string;
+  password?: string;
+  image?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface UserState {
+  user: User | null;
 }

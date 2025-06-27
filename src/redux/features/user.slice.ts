@@ -1,7 +1,8 @@
+import type { UserState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: {},
+const initialState: UserState = {
+  user: null,
 };
 
 export const userSlice = createSlice({
@@ -12,10 +13,12 @@ export const userSlice = createSlice({
       state.user = action.payload;
     },
     clearUser: (state) => {
-      state.user = {};
+      state.user = null;
     },
   },
 });
 
 export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;
+
+export const selectUser = (state: { auth: UserState }) => state.auth.user;
