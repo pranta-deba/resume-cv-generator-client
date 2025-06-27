@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { signInWithGoogle } from "@/firebase/authService";
+import { registerWithEmail, signInWithGoogle } from "@/firebase/authService";
 import { setUser } from "@/redux/features/user.slice";
 import { Label } from "@radix-ui/react-label";
 import { Chrome, FileText, Lock, Mail, User } from "lucide-react";
@@ -34,8 +34,49 @@ const Register = () => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    console.log(formData);
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      console.error("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      console.error("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      console.log(formData);
+      const user = await registerWithEmail(
+        formData.name,
+        formData.email,
+        formData.password,
+        ""
+      );
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        createdAt: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime,
+      };
+      dispatch(setUser(userData));
+
+      console.log(user);
+      setLoading(false);
+    } catch (error) {
+      console.error("Email password registration error", error);
+      setLoading(false);
+    }
   };
 
   const handleGoogleRegister = async () => {

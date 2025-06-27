@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
   signOut,
 } from "firebase/auth";
 import { auth } from "./config";
@@ -18,8 +19,20 @@ export const loginWithEmail = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const registerWithEmail = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const registerWithEmail = async (
+  name: string,
+  email: string,
+  password: string,
+  photoURL: string = ""
+): Promise<User> => {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  if (result.user) {
+    await updateProfile(result.user, {
+      displayName: name,
+      photoURL: photoURL,
+    });
+  }
+  return result.user;
 };
 
 export const logout = () => {
