@@ -1,8 +1,37 @@
 import { Outlet } from "react-router-dom";
 import Header from "../ui/header";
 import Footer from "../ui/footer";
+import { useAppSelector } from "@/redux/hooks";
+import { clearUser, selectUser, setUser } from "@/redux/features/user.slice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { onAuthChange } from "@/firebase/authService";
 
 const Root = () => {
+  const user = useAppSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthChange((currentUser) => {
+      if (!user && currentUser) {
+        dispatch(
+          setUser({
+            id: currentUser.uid,
+            name: currentUser.displayName,
+            email: currentUser.email,
+            image: currentUser.photoURL,
+            createdAt: currentUser.metadata.creationTime,
+            lastSignInTime: currentUser.metadata.lastSignInTime,
+          })
+        );
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch, user]);
+
+  console.log(user);
+
   return (
     <>
       <Header />

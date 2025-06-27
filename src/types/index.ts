@@ -56,6 +56,7 @@ export interface User {
   image?: string;
   createdAt?: string;
   updatedAt?: string;
+  lastSignInTime?: string;
 }
 
 export interface UserState {

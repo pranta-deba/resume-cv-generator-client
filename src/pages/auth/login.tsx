@@ -8,14 +8,18 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signInWithGoogle } from "@/firebase/authService";
+import { setUser } from "@/redux/features/user.slice";
 import { Chrome, Lock, Mail } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +28,25 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-    console.log("Google Login");
+    setLoading(true);
+    try {
+      const result = await signInWithGoogle();
+      const user = result.user;
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        createdAt: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime,
+      };
+      dispatch(setUser(userData));
+      console.log(user);
+      setLoading(false);
+    } catch (error) {
+      console.error("Google login error", error);
+      setLoading(false);
+    }
   };
 
   return (
