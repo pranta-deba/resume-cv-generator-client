@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../ui/header";
 import Footer from "../ui/footer";
 import { useAppSelector } from "@/redux/hooks";
-import { clearUser, selectUser, setUser } from "@/redux/features/user.slice";
+import { selectUser, setUser } from "@/redux/features/user.slice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { onAuthChange } from "@/firebase/authService";

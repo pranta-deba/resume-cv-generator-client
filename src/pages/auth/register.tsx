@@ -7,9 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { signInWithGoogle } from "@/firebase/authService";
+import { setUser } from "@/redux/features/user.slice";
 import { Label } from "@radix-ui/react-label";
 import { Chrome, FileText, Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -20,6 +23,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -35,7 +39,25 @@ const Register = () => {
   };
 
   const handleGoogleRegister = async () => {
-    console.log("Google Login");
+    setLoading(true);
+    try {
+      const result = await signInWithGoogle();
+      const user = result.user;
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        createdAt: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime,
+      };
+      dispatch(setUser(userData));
+      console.log(user);
+      setLoading(false);
+    } catch (error) {
+      console.error("Google login error", error);
+      setLoading(false);
+    }
   };
 
   return (
