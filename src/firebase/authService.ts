@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -20,7 +21,10 @@ export const registerWithEmail = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-
 export const logout = () => {
   return signOut(auth);
+};
+
+export const onAuthChange = (callback: (user: any) => void) => {
+  return onAuthStateChanged(auth, callback);
 };
