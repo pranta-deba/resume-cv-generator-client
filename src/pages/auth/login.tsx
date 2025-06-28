@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signInWithGoogle } from "@/firebase/authService";
+import { loginWithEmail, signInWithGoogle } from "@/firebase/authService";
 import { setUser } from "@/redux/features/user.slice";
 import { Chrome, Lock, Mail } from "lucide-react";
 import { useState } from "react";
@@ -23,8 +23,31 @@ const Login = () => {
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    console.log({ email, password });
+    if (!email || !password) {
+      console.error("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
+    try {
+      const result = await loginWithEmail(email, password);
+      const user = result.user;
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        createdAt: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime,
+      };
+      dispatch(setUser(userData));
+      console.log(user);
+      setLoading(false);
+    } catch (error) {
+      console.error("Email login error", error);
+      setLoading(false);
+    }
   };
 
   const handleGoogleLogin = async () => {
