@@ -14,10 +14,10 @@ const Header = () => {
             </span>
           </div>
           <div className="flex space-x-4">
-            <Link to="/auth/login">
+            <Link to="/login">
               <Button variant="outline">Login</Button>
             </Link>
-            <Link to="/auth/register">
+            <Link to="/register">
               <Button>Get Started</Button>
             </Link>
           </div>
