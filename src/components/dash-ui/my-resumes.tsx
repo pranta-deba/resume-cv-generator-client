@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
+import NoResumesFound from "./no-resumes-found";
 interface Resume {
   id: string;
   title: string;
@@ -38,11 +39,7 @@ const MyResumes = () => {
         </Link>
       </div>
 
-      {resumes.length === 0 ? (
-        <p className="text-gray-600">You have no resumes yet.</p>
-      ) : (
-        <div>ddd</div>
-      )}
+      {resumes.length === 0 ? <NoResumesFound /> : <div>ddd</div>}
     </div>
   );
 };
