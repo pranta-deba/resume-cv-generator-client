@@ -1,5 +1,6 @@
 import { FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "./button";
 
 const Header = () => {
   return (
@@ -14,10 +15,10 @@ const Header = () => {
           </div>
           <div className="flex space-x-4">
             <Link to="/auth/login">
-              <button>Login</button>
+              <Button variant="outline">Login</Button>
             </Link>
             <Link to="/auth/register">
-              <button>Get Started</button>
+              <Button>Get Started</Button>
             </Link>
           </div>
         </div>
