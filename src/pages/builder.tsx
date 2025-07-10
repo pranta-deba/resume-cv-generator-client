@@ -65,7 +65,6 @@ const Builder = () => {
     projects: [],
   });
 
-  
   useEffect(() => {
     if (templateId) {
       setSelectedTemplate(templateId);
@@ -185,6 +184,35 @@ const Builder = () => {
     }));
   };
 
+  const addProject = () => {
+    const newProject = {
+      id: Date.now().toString(),
+      name: "",
+      description: "",
+      technologies: "",
+      link: "",
+    };
+    setResumeData((prev) => ({
+      ...prev,
+      projects: [...prev.projects, newProject],
+    }));
+  };
+
+  const updateProject = (id: string, field: string, value: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      projects: prev.projects.map((project) =>
+        project.id === id ? { ...project, [field]: value } : project
+      ),
+    }));
+  };
+
+  const removeProject = (id: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      projects: prev.projects.filter((project) => project.id !== id),
+    }));
+  };
   return <div>builders</div>;
 };
 
