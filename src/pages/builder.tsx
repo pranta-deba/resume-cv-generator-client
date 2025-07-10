@@ -64,6 +64,8 @@ const Builder = () => {
     skills: [],
     projects: [],
   });
+
+  
   useEffect(() => {
     if (templateId) {
       setSelectedTemplate(templateId);
@@ -160,6 +162,26 @@ const Builder = () => {
     setResumeData((prev) => ({
       ...prev,
       skills: [...prev.skills, newSkillCategory],
+    }));
+  };
+
+  const updateSkillCategory = (
+    id: string,
+    field: string,
+    value: string | string[]
+  ) => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: prev.skills.map((skill) =>
+        skill.id === id ? { ...skill, [field]: value } : skill
+      ),
+    }));
+  };
+
+  const removeSkillCategory = (id: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: prev.skills.filter((skill) => skill.id !== id),
     }));
   };
 
