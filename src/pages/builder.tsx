@@ -99,12 +99,25 @@ const Builder = () => {
     }));
   };
 
-   const updateExperience = (id: string, field: string, value: string | boolean) => {
+  const updateExperience = (
+    id: string,
+    field: string,
+    value: string | boolean
+  ) => {
     setResumeData((prev) => ({
       ...prev,
-      experience: prev.experience.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp)),
-    }))
-  }
+      experience: prev.experience.map((exp) =>
+        exp.id === id ? { ...exp, [field]: value } : exp
+      ),
+    }));
+  };
+
+  const removeExperience = (id: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      experience: prev.experience.filter((exp) => exp.id !== id),
+    }));
+  };
 
   return <div>builders</div>;
 };
