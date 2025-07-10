@@ -135,6 +135,15 @@ const Builder = () => {
     }));
   };
 
+  const updateEducation = (id: string, field: string, value: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      education: prev.education.map((edu) =>
+        edu.id === id ? { ...edu, [field]: value } : edu
+      ),
+    }));
+  };
+
   return <div>builders</div>;
 };
 
