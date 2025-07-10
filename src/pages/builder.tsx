@@ -1,3 +1,4 @@
+import BuilderHeader from "@/components/others/builder-header";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 interface ResumeData {
@@ -213,7 +214,15 @@ const Builder = () => {
       projects: prev.projects.filter((project) => project.id !== id),
     }));
   };
-  return <div>builders</div>;
+
+  const handleSave = () => {
+    console.log("Saving resume data:", resumeData);
+  };
+  return (
+    <div>
+      <BuilderHeader handleSave={handleSave}/>
+    </div>
+  );
 };
 
 export default Builder;
