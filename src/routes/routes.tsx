@@ -5,6 +5,7 @@ import Login from "@/pages/auth/login";
 import Register from "@/pages/auth/register";
 import Dashboard from "@/pages/dashboard";
 import Templates from "@/pages/templates";
+import Builder from "@/pages/builder";
 
 export const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const routes = createBrowserRouter([
       {
         path: "templates",
         element: <Templates />,
+      },
+      {
+        path: "builder",
+        element: <Builder />,
       },
       {
         path: "dashboard",
