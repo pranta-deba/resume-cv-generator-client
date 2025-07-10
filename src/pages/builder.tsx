@@ -151,6 +151,18 @@ const Builder = () => {
     }));
   };
 
+  const addSkillCategory = () => {
+    const newSkillCategory = {
+      id: Date.now().toString(),
+      category: "",
+      items: [],
+    };
+    setResumeData((prev) => ({
+      ...prev,
+      skills: [...prev.skills, newSkillCategory],
+    }));
+  };
+
   return <div>builders</div>;
 };
 
