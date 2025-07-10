@@ -1,5 +1,46 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+interface ResumeData {
+  personalInfo: {
+    fullName: string;
+    email: string;
+    phone: string;
+    location: string;
+    website: string;
+    linkedin: string;
+    summary: string;
+  };
+  experience: Array<{
+    id: string;
+    company: string;
+    position: string;
+    startDate: string;
+    endDate: string;
+    current: boolean;
+    description: string;
+  }>;
+  education: Array<{
+    id: string;
+    institution: string;
+    degree: string;
+    field: string;
+    startDate: string;
+    endDate: string;
+    gpa: string;
+  }>;
+  skills: Array<{
+    id: string;
+    category: string;
+    items: string[];
+  }>;
+  projects: Array<{
+    id: string;
+    name: string;
+    description: string;
+    technologies: string;
+    link: string;
+  }>;
+}
 
 const Builder = () => {
   const [searchParams] = useSearchParams();
@@ -8,7 +49,7 @@ const Builder = () => {
   const [activeTab, setActiveTab] = useState("personal");
   const [selectedTemplate, setSelectedTemplate] = useState("modern");
 
-  const [resumeData, setResumeData] = useState({
+  const [resumeData, setResumeData] = useState<ResumeData>({
     personalInfo: {
       fullName: "",
       email: "",
@@ -41,6 +82,29 @@ const Builder = () => {
       },
     }));
   };
+
+  const addExperience = () => {
+    const newExperience = {
+      id: Date.now().toString(),
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      current: false,
+      description: "",
+    };
+    setResumeData((prev) => ({
+      ...prev,
+      experience: [...prev.experience, newExperience],
+    }));
+  };
+
+   const updateExperience = (id: string, field: string, value: string | boolean) => {
+    setResumeData((prev) => ({
+      ...prev,
+      experience: prev.experience.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp)),
+    }))
+  }
 
   return <div>builders</div>;
 };
