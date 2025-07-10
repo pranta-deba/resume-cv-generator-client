@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const Builder = () => {
@@ -8,7 +8,7 @@ const Builder = () => {
   const [activeTab, setActiveTab] = useState("personal");
   const [selectedTemplate, setSelectedTemplate] = useState("modern");
 
-  const [resumeData, setResumeData] = useState<ResumeData>({
+  const [resumeData, setResumeData] = useState({
     personalInfo: {
       fullName: "",
       email: "",
@@ -23,11 +23,15 @@ const Builder = () => {
     skills: [],
     projects: [],
   });
+  useEffect(() => {
+    if (templateId) {
+      setSelectedTemplate(templateId);
+    }
+  }, [templateId]);
 
   console.log("Template ID:", templateId);
   console.log("Resume ID:", resumeId);
 
-  
   return <div>builders</div>;
 };
 
