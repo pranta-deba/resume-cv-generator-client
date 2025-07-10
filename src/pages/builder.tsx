@@ -144,6 +144,13 @@ const Builder = () => {
     }));
   };
 
+  const removeEducation = (id: string) => {
+    setResumeData((prev) => ({
+      ...prev,
+      education: prev.education.filter((edu) => edu.id !== id),
+    }));
+  };
+
   return <div>builders</div>;
 };
 
