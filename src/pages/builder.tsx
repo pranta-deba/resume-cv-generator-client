@@ -119,6 +119,22 @@ const Builder = () => {
     }));
   };
 
+  const addEducation = () => {
+    const newEducation = {
+      id: Date.now().toString(),
+      institution: "",
+      degree: "",
+      field: "",
+      startDate: "",
+      endDate: "",
+      gpa: "",
+    };
+    setResumeData((prev) => ({
+      ...prev,
+      education: [...prev.education, newEducation],
+    }));
+  };
+
   return <div>builders</div>;
 };
 
