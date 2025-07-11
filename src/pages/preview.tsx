@@ -9,7 +9,7 @@ import SalesTemplate from "@/components/templates/salesTemplate";
 import StartupTemplate from "@/components/templates/startupTemplate";
 import TechnicalTemplate from "@/components/templates/technicalTemplate";
 import { Button } from "@/components/ui/button";
-import {  dummyDataHealthcare} from "@/constants";
+import { dummyDataSales } from "@/constants";
 import type { ResumeData } from "@/types";
 import { ArrowLeft, Download, Edit, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -22,7 +22,9 @@ const Preview = () => {
   const templateId = searchParams.get("template");
   const resumeId = searchParams.get("id");
   const resumeRef = useRef<HTMLDivElement>(null);
-  const [resumeData, setResumeData] = useState<ResumeData | null>(dummyDataHealthcare);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(
+    dummyDataSales
+  );
   const [template, setTemplate] = useState("modern");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();

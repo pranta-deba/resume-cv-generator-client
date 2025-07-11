@@ -4,7 +4,7 @@ export const templates = [
     name: "Modern Professional",
     description:
       "Clean and contemporary design perfect for tech and creative industries",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/LznzXDCk/Screenshot-2025-07-10-235314.png",
     category: "Professional",
   },
   {
@@ -12,7 +12,7 @@ export const templates = [
     name: "Classic Traditional",
     description:
       "Timeless design suitable for traditional industries and formal positions",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/4gfByPDL/Screenshot-2025-07-10-235357.png",
     category: "Traditional",
   },
   {
@@ -20,14 +20,14 @@ export const templates = [
     name: "Creative Designer",
     description:
       "Bold and artistic layout for designers and creative professionals",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/WW3NC1rm/Screenshot-2025-07-10-235452.png",
     category: "Creative",
   },
   {
     id: "minimal",
     name: "Minimal Clean",
     description: "Simple and elegant design that focuses on content",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/vC1W412G/Screenshot-2025-07-10-235616.png",
     category: "Minimal",
   },
   {
@@ -35,14 +35,14 @@ export const templates = [
     name: "Executive Premium",
     description:
       "Sophisticated design for senior-level positions and executives",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/s9nK0cVC/Screenshot-2025-07-10-235650.png",
     category: "Executive",
   },
   {
     id: "academic",
     name: "Academic Scholar",
     description: "Formal layout perfect for academic and research positions",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/rfQZZK5b/Screenshot-2025-07-10-235722.png",
     category: "Academic",
   },
   {
@@ -50,7 +50,7 @@ export const templates = [
     name: "Startup Dynamic",
     description:
       "Modern and energetic design for startup and entrepreneurial roles",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/nMp8NpsF/Screenshot-2025-07-10-235922.png",
     category: "Modern",
   },
   {
@@ -58,7 +58,7 @@ export const templates = [
     name: "Technical Expert",
     description:
       "Structured layout ideal for engineering and technical positions",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/7xc4QLmq/Screenshot-2025-07-11-000011.png",
     category: "Technical",
   },
   {
@@ -66,7 +66,7 @@ export const templates = [
     name: "Sales Professional",
     description:
       "Results-focused design for sales and business development roles",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/FbWttq4M/Screenshot-2025-07-11-000044.png",
     category: "Business",
   },
   {
@@ -74,7 +74,7 @@ export const templates = [
     name: "Healthcare Professional",
     description:
       "Clean and trustworthy design for medical and healthcare professionals",
-    preview: "/placeholder.svg?height=400&width=300",
+    preview: "https://i.ibb.co/ZpJVqRLs/Screenshot-2025-07-11-000107.png",
     category: "Healthcare",
   },
 ];
