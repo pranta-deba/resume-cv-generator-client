@@ -1,4 +1,3 @@
-import BuilderHeader from "@/components/others/builder-header";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import type { ResumeData } from "@/types";
-import { Plus, Trash2 } from "lucide-react";
+import { Download, Eye, FileText, Plus, Save, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -193,7 +192,26 @@ const Builder = () => {
   };
   return (
     <div className="min-h-screen bg-gray-50">
-      <BuilderHeader handleSave={handleSave} />
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex space-x-4">
+              <Button variant="outline" onClick={handleSave}>
+                <Save className="h-4 w-4 mr-2" />
+                Save
+              </Button>
+              <Button variant="outline">
+                <Eye className="h-4 w-4 mr-2" />
+                Preview
+              </Button>
+              <Button>
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-5">

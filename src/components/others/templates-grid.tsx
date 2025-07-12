@@ -9,8 +9,6 @@ import {
 import { Button } from "../ui/button";
 import { templates } from "@/constants";
 
-
-
 const TemplatesGrid = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -21,11 +19,13 @@ const TemplatesGrid = () => {
         >
           <CardHeader className="p-0">
             <div className="relative overflow-hidden rounded-t-lg">
-              <img
-                src={template.preview || "/placeholder.svg"}
-                alt={template.name}
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <figure className="h-64 overflow-hidden">
+                <img
+                  src={template.preview || "/placeholder.svg"}
+                  alt={template.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </figure>
               <div className="absolute top-2 right-2">
                 <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs">
                   {template.category}
