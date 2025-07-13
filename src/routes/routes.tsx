@@ -7,6 +7,7 @@ import Dashboard from "@/pages/dashboard";
 import Templates from "@/pages/templates";
 import Builder from "@/pages/builder";
 import Preview from "@/pages/preview";
+import ProtectedRoute from "./protected";
 
 export const routes = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "login",
