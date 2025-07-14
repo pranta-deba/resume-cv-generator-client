@@ -25,13 +25,20 @@ const Header = () => {
               ResumeBuilder
             </Link>
           </div>
-          <div className="flex space-x-4">
-            <Link to="/login">
-              <Button variant="outline">Login</Button>
-            </Link>
-            <Link to="/register">
-              <Button>Get Started</Button>
-            </Link>
+          <div className="flex space-x-4 items-center">
+            {!user && (
+              <>
+                <Link to="/login">
+                  <Button variant="outline">Login</Button>
+                </Link>
+                <Link to="/register">
+                  <Button>Get Started</Button>
+                </Link>
+              </>
+            )}
+            {user && (
+              <p>{user.email.split("@")[0]}</p>
+            )}
             {user && (
               <Button onClick={handleLogout}>
                 <LogOutIcon />
