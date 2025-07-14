@@ -11,9 +11,9 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import type { ResumeData } from "@/types";
-import { Download, Eye, FileText, Plus, Save, Trash2 } from "lucide-react";
+import { Download, Eye, Plus, Save, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Builder = () => {
   const [searchParams] = useSearchParams();
@@ -21,6 +21,8 @@ const Builder = () => {
   const resumeId = searchParams.get("id");
   const [activeTab, setActiveTab] = useState("personal");
   const [selectedTemplate, setSelectedTemplate] = useState("modern");
+  const navigate = useNavigate();
+  const [saved, setSaved] = useState(false);
 
   console.log("Template ID:", templateId);
   console.log("Resume ID:", resumeId);
@@ -169,6 +171,8 @@ const Builder = () => {
       ...prev,
       projects: [...prev.projects, newProject],
     }));
+    
+    setSaved(false);
   };
 
   const updateProject = (id: string, field: string, value: string) => {
@@ -178,6 +182,7 @@ const Builder = () => {
         project.id === id ? { ...project, [field]: value } : project
       ),
     }));
+    setSaved(false);
   };
 
   const removeProject = (id: string) => {
@@ -185,10 +190,20 @@ const Builder = () => {
       ...prev,
       projects: prev.projects.filter((project) => project.id !== id),
     }));
+    setSaved(false);
   };
 
   const handleSave = () => {
     console.log("Saving resume data:", resumeData);
+    setSaved(true);
+  };
+
+  const handlePreview = () => {
+    if (!saved) {
+      console.log("Resume not saved. Please save before previewing.");
+      return;
+    }
+    navigate(`/preview`);
   };
   return (
     <div className="min-h-screen bg-gray-50">
@@ -200,7 +215,7 @@ const Builder = () => {
                 <Save className="h-4 w-4 mr-2" />
                 Save
               </Button>
-              <Button variant="outline">
+              <Button onClick={handlePreview} variant="outline">
                 <Eye className="h-4 w-4 mr-2" />
                 Preview
               </Button>
