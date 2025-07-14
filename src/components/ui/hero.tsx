@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "./button";
 import { useAppSelector } from "@/redux/hooks";
 import { selectUser } from "@/redux/features/user.slice";
