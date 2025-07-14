@@ -13,7 +13,7 @@ import { Label } from "@radix-ui/react-label";
 import { Chrome, FileText, Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +24,9 @@ const Register = () => {
   });
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/dashboard";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -70,9 +73,9 @@ const Register = () => {
         lastSignInTime: user.metadata.lastSignInTime,
       };
       dispatch(setUser(userData));
-
       console.log(user);
       setLoading(false);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Email password registration error", error);
       setLoading(false);
@@ -95,6 +98,7 @@ const Register = () => {
       dispatch(setUser(userData));
       console.log(user);
       setLoading(false);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Google login error", error);
       setLoading(false);
