@@ -29,7 +29,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "builder",
-        element: <Builder />,
+        element: (
+          <ProtectedRoute>
+            <Builder />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "dashboard",
