@@ -36,9 +36,7 @@ const Header = () => {
                 </Link>
               </>
             )}
-            {user && (
-              <p>{user.email.split("@")[0]}</p>
-            )}
+            {user && <p>{user.email.split("@")[0]}</p>}
             {user && (
               <Button onClick={handleLogout}>
                 <LogOutIcon />
