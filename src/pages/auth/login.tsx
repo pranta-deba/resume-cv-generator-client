@@ -13,13 +13,16 @@ import { setUser } from "@/redux/features/user.slice";
 import { Chrome, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/dashboard";
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +47,7 @@ const Login = () => {
       dispatch(setUser(userData));
       console.log(user);
       setLoading(false);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Email login error", error);
       setLoading(false);
@@ -66,6 +70,7 @@ const Login = () => {
       dispatch(setUser(userData));
       console.log(user);
       setLoading(false);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Google login error", error);
       setLoading(false);
