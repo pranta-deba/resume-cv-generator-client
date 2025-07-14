@@ -57,6 +57,7 @@ const Builder = () => {
         [field]: value,
       },
     }));
+    setSaved(false);
   };
 
   const addExperience = () => {
@@ -73,6 +74,7 @@ const Builder = () => {
       ...prev,
       experience: [...prev.experience, newExperience],
     }));
+    setSaved(false);
   };
 
   const updateExperience = (
@@ -86,6 +88,7 @@ const Builder = () => {
         exp.id === id ? { ...exp, [field]: value } : exp
       ),
     }));
+    setSaved(false);
   };
 
   const removeExperience = (id: string) => {
@@ -93,6 +96,7 @@ const Builder = () => {
       ...prev,
       experience: prev.experience.filter((exp) => exp.id !== id),
     }));
+    setSaved(false);
   };
 
   const addEducation = () => {
@@ -109,6 +113,7 @@ const Builder = () => {
       ...prev,
       education: [...prev.education, newEducation],
     }));
+    setSaved(false);
   };
 
   const updateEducation = (id: string, field: string, value: string) => {
@@ -118,6 +123,7 @@ const Builder = () => {
         edu.id === id ? { ...edu, [field]: value } : edu
       ),
     }));
+    setSaved(false);
   };
 
   const removeEducation = (id: string) => {
@@ -125,6 +131,7 @@ const Builder = () => {
       ...prev,
       education: prev.education.filter((edu) => edu.id !== id),
     }));
+    setSaved(false);
   };
 
   const addSkillCategory = () => {
@@ -137,6 +144,7 @@ const Builder = () => {
       ...prev,
       skills: [...prev.skills, newSkillCategory],
     }));
+    setSaved(false);
   };
 
   const updateSkillCategory = (
@@ -150,6 +158,7 @@ const Builder = () => {
         skill.id === id ? { ...skill, [field]: value } : skill
       ),
     }));
+    setSaved(false);
   };
 
   const removeSkillCategory = (id: string) => {
@@ -157,6 +166,7 @@ const Builder = () => {
       ...prev,
       skills: prev.skills.filter((skill) => skill.id !== id),
     }));
+    setSaved(false);
   };
 
   const addProject = () => {
@@ -171,7 +181,7 @@ const Builder = () => {
       ...prev,
       projects: [...prev.projects, newProject],
     }));
-    
+
     setSaved(false);
   };
 
@@ -205,6 +215,13 @@ const Builder = () => {
     }
     navigate(`/preview`);
   };
+  const handleDownload = () => {
+    if (!saved) {
+      console.log("Resume not saved. Please save before previewing.");
+      return;
+    }
+    console.log("Downloading resume...");
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
@@ -219,7 +236,7 @@ const Builder = () => {
                 <Eye className="h-4 w-4 mr-2" />
                 Preview
               </Button>
-              <Button>
+              <Button onClick={handleDownload}>
                 <Download className="h-4 w-4 mr-2" />
                 Download PDF
               </Button>
